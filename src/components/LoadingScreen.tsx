@@ -1,6 +1,5 @@
 import { motion, AnimatePresence } from 'motion/react';
 import { useState, useEffect } from 'react';
-import chipImage from 'figma:asset/ec402ae87d0af0862f29e2885b7df3b7b0835648.png';
 
 interface LoadingScreenProps {
   onLoadingComplete: () => void;
@@ -18,17 +17,6 @@ export default function LoadingScreen({ onLoadingComplete }: LoadingScreenProps)
     "Compiling Verilog Modules...", 
     "Rendering Creative Elements...",
     "Focusing Photography Lens...",
-    "Welcome, Aman Gupta"
-  ];
-
-  // Skill-based floating elements
-  const skillElements = [
-    { icon: "</>" , label: "Coder", color: "#00f5ff", position: { x: -200, y: -150 } },
-    { icon: "🎨", label: "Designer", color: "#ff0080", position: { x: 200, y: -150 } },
-    { icon: "📸", label: "Photographer", color: "#00ff88", position: { x: -250, y: 0 } },
-    { icon: "🤖", label: "AI/ML", color: "#ff6b35", position: { x: 250, y: 0 } },
-    { icon: "⚡", label: "VLSI", color: "#8b5cf6", position: { x: -200, y: 150 } },
-    { icon: "🔧", label: "Embedded", color: "#06b6d4", position: { x: 200, y: 150 } }
   ];
 
   useEffect(() => {
@@ -89,261 +77,6 @@ export default function LoadingScreen({ onLoadingComplete }: LoadingScreenProps)
             ease: "easeInOut"
           }}
         >
-          {/* Chip Image with Enhanced Breathing */}
-          <div className="relative w-64 h-64">
-            <motion.img
-              src={chipImage}
-              alt="Microchip"
-              className="w-64 h-64 object-contain relative z-10"
-              animate={{
-                scale: [1, 1.08, 1],
-                filter: [
-                  "drop-shadow(0 0 20px #00f5ff) brightness(1)",
-                  "drop-shadow(0 0 40px #00ff88) brightness(1.2)",
-                  "drop-shadow(0 0 20px #00f5ff) brightness(1)"
-                ]
-              }}
-              transition={{
-                duration: 2.5,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            />
-
-            {/* LED Nodes within Chip */}
-            <svg className="absolute inset-0 w-64 h-64 z-20" viewBox="0 0 256 256">
-              {/* Central Processing Core */}
-              <motion.circle
-                cx="128"
-                cy="128"
-                r="8"
-                fill="#00f5ff"
-                animate={{
-                  r: [6, 12, 6],
-                  opacity: [0.8, 1, 0.8],
-                  fill: ["#00f5ff", "#00ff88", "#ff0080", "#00f5ff"]
-                }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-                style={{
-                  filter: "drop-shadow(0 0 10px currentColor)"
-                }}
-              />
-
-              {/* LED Connection Points */}
-              {[
-                [128, 80], [128, 176], [80, 128], [176, 128],
-                [102, 102], [154, 102], [102, 154], [154, 154],
-                [96, 80], [160, 80], [96, 176], [160, 176],
-                [80, 96], [80, 160], [176, 96], [176, 160]
-              ].map(([x, y], index) => (
-                <motion.circle
-                  key={index}
-                  cx={x}
-                  cy={y}
-                  r="3"
-                  fill="#00f5ff"
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={{
-                    opacity: loadingProgress > index * 5 ? [0, 1, 0.7, 1] : 0,
-                    scale: loadingProgress > index * 5 ? [0, 1.5, 1] : 0,
-                    fill: ["#00f5ff", "#00ff88", "#ff0080", "#8b5cf6", "#00f5ff"]
-                  }}
-                  transition={{
-                    opacity: { duration: 0.8, delay: index * 0.1 },
-                    scale: { duration: 0.6, delay: index * 0.1 },
-                    fill: { duration: 2, repeat: Infinity, delay: index * 0.2 }
-                  }}
-                  style={{
-                    filter: "drop-shadow(0 0 6px currentColor)"
-                  }}
-                />
-              ))}
-
-              {/* Neural Pathways */}
-              {/* Horizontal Pathways */}
-              <motion.path
-                d="M 64 128 L 192 128"
-                stroke="#00f5ff"
-                strokeWidth="2"
-                fill="none"
-                strokeLinecap="round"
-                initial={{ pathLength: 0, opacity: 0 }}
-                animate={{
-                  pathLength: loadingProgress > 20 ? [0, 1, 0.8] : 0,
-                  opacity: loadingProgress > 20 ? [0, 1, 0.8] : 0,
-                  stroke: ["#00f5ff", "#00ff88", "#ff0080", "#00f5ff"]
-                }}
-                transition={{
-                  pathLength: { duration: 1.5, delay: 0.5 },
-                  opacity: { duration: 1.5, delay: 0.5 },
-                  stroke: { duration: 2, repeat: Infinity }
-                }}
-                style={{
-                  filter: "drop-shadow(0 0 4px currentColor)"
-                }}
-              />
-
-              {/* Vertical Pathways */}
-              <motion.path
-                d="M 128 64 L 128 192"
-                stroke="#00ff88"
-                strokeWidth="2"
-                fill="none"
-                strokeLinecap="round"
-                initial={{ pathLength: 0, opacity: 0 }}
-                animate={{
-                  pathLength: loadingProgress > 40 ? [0, 1, 0.8] : 0,
-                  opacity: loadingProgress > 40 ? [0, 1, 0.8] : 0,
-                  stroke: ["#00ff88", "#ff0080", "#8b5cf6", "#00ff88"]
-                }}
-                transition={{
-                  pathLength: { duration: 1.5, delay: 1 },
-                  opacity: { duration: 1.5, delay: 1 },
-                  stroke: { duration: 2.5, repeat: Infinity, delay: 0.5 }
-                }}
-                style={{
-                  filter: "drop-shadow(0 0 4px currentColor)"
-                }}
-              />
-
-              {/* Diagonal Neural Networks */}
-              <motion.path
-                d="M 90 90 L 166 166"
-                stroke="#ff0080"
-                strokeWidth="1.5"
-                fill="none"
-                strokeLinecap="round"
-                initial={{ pathLength: 0, opacity: 0 }}
-                animate={{
-                  pathLength: loadingProgress > 60 ? [0, 1, 0.7] : 0,
-                  opacity: loadingProgress > 60 ? [0, 1, 0.7] : 0,
-                  stroke: ["#ff0080", "#8b5cf6", "#00f5ff", "#ff0080"]
-                }}
-                transition={{
-                  pathLength: { duration: 1.2, delay: 1.5 },
-                  opacity: { duration: 1.2, delay: 1.5 },
-                  stroke: { duration: 3, repeat: Infinity, delay: 1 }
-                }}
-                style={{
-                  filter: "drop-shadow(0 0 3px currentColor)"
-                }}
-              />
-
-              <motion.path
-                d="M 166 90 L 90 166"
-                stroke="#8b5cf6"
-                strokeWidth="1.5"
-                fill="none"
-                strokeLinecap="round"
-                initial={{ pathLength: 0, opacity: 0 }}
-                animate={{
-                  pathLength: loadingProgress > 80 ? [0, 1, 0.7] : 0,
-                  opacity: loadingProgress > 80 ? [0, 1, 0.7] : 0,
-                  stroke: ["#8b5cf6", "#00f5ff", "#00ff88", "#8b5cf6"]
-                }}
-                transition={{
-                  pathLength: { duration: 1.2, delay: 2 },
-                  opacity: { duration: 1.2, delay: 2 },
-                  stroke: { duration: 3.5, repeat: Infinity, delay: 1.5 }
-                }}
-                style={{
-                  filter: "drop-shadow(0 0 3px currentColor)"
-                }}
-              />
-
-              {/* Pulsing Data Packets */}
-              {Array.from({ length: 8 }).map((_, i) => (
-                <motion.circle
-                  key={`packet-${i}`}
-                  r="2"
-                  fill="#ffffff"
-                  initial={{ opacity: 0 }}
-                  animate={{
-                    opacity: loadingProgress > 30 ? [0, 1, 0] : 0,
-                    cx: [64 + (i * 16), 192 - (i * 16)],
-                    cy: [128, 128]
-                  }}
-                  transition={{
-                    opacity: { duration: 0.8, repeat: Infinity, delay: i * 0.2 },
-                    cx: { duration: 2, repeat: Infinity, delay: i * 0.3, ease: "linear" },
-                    cy: { duration: 2, repeat: Infinity, delay: i * 0.3, ease: "linear" }
-                  }}
-                  style={{
-                    filter: "drop-shadow(0 0 4px #ffffff)"
-                  }}
-                />
-              ))}
-
-              {/* Circuit Breathing Effect */}
-              <motion.rect
-                x="100"
-                y="100"
-                width="56"
-                height="56"
-                rx="8"
-                fill="none"
-                stroke="#00f5ff"
-                strokeWidth="1"
-                opacity="0.6"
-                animate={{
-                  scale: [1, 1.1, 1],
-                  stroke: ["#00f5ff", "#00ff88", "#ff0080", "#8b5cf6", "#00f5ff"],
-                  strokeWidth: [1, 2, 1]
-                }}
-                transition={{
-                  scale: { duration: 3, repeat: Infinity, ease: "easeInOut" },
-                  stroke: { duration: 4, repeat: Infinity },
-                  strokeWidth: { duration: 3, repeat: Infinity, ease: "easeInOut" }
-                }}
-                style={{
-                  transformOrigin: "128px 128px",
-                  filter: "drop-shadow(0 0 6px currentColor)"
-                }}
-              />
-
-              {/* Glow Filter for Enhanced Effects */}
-              <defs>
-                <filter id="chipGlow">
-                  <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-                  <feMerge>
-                    <feMergeNode in="coloredBlur"/>
-                    <feMergeNode in="SourceGraphic"/>
-                  </feMerge>
-                </filter>
-              </defs>
-            </svg>
-
-            {/* Neural Activity Visualization */}
-            <div className="absolute inset-0 z-15">
-              {Array.from({ length: 12 }).map((_, i) => (
-                <motion.div
-                  key={`neural-${i}`}
-                  className="absolute w-1 h-1 rounded-full"
-                  style={{
-                    background: `hsl(${180 + i * 30}, 100%, 70%)`,
-                    left: `${40 + (i % 4) * 15}%`,
-                    top: `${35 + Math.floor(i / 4) * 15}%`,
-                  }}
-                  animate={{
-                    scale: [0, 1.5, 0],
-                    opacity: [0, 1, 0],
-                    background: [
-                      `hsl(${180 + i * 30}, 100%, 70%)`,
-                      `hsl(${240 + i * 30}, 100%, 80%)`,
-                      `hsl(${300 + i * 30}, 100%, 70%)`
-                    ]
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    delay: i * 0.15,
-                    ease: "easeInOut"
-                  }}
-                />
-              ))}
-            </div>
-          </div>
-
           {/* Progress Ring around Chip */}
           <svg 
             className="absolute inset-0 w-80 h-80" 
@@ -398,103 +131,7 @@ export default function LoadingScreen({ onLoadingComplete }: LoadingScreenProps)
           >
             <span className="text-2xl font-bold">{Math.round(loadingProgress)}%</span>
           </motion.div>
-        </motion.div>
-
-        {/* Skill-based Floating Elements */}
-        {skillElements.map((element, index) => (
-          <motion.div
-            key={index}
-            className="absolute flex flex-col items-center text-center"
-            style={{
-              left: `calc(50% + ${element.position.x}px)`,
-              top: `calc(50% + ${element.position.y}px)`,
-            }}
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{
-              opacity: loadingProgress > index * 15 ? [0, 1, 0.8, 1] : 0,
-              scale: loadingProgress > index * 15 ? [0, 1.2, 1] : 0,
-              y: [0, -10, 0],
-            }}
-            transition={{
-              opacity: { duration: 0.8, delay: index * 0.2 },
-              scale: { duration: 0.8, delay: index * 0.2 },
-              y: { duration: 3, repeat: Infinity, ease: "easeInOut", delay: index * 0.5 }
-            }}
-            whileHover={{ scale: 1.1 }}
-          >
-            <motion.div
-              className="w-16 h-16 rounded-2xl flex items-center justify-center mb-2 backdrop-blur-sm border border-white/20 shadow-2xl"
-              style={{
-                background: `linear-gradient(135deg, ${element.color}20, ${element.color}40)`
-              }}
-              animate={{
-                boxShadow: [
-                  `0 0 10px ${element.color}40`,
-                  `0 0 25px ${element.color}60`,
-                  `0 0 10px ${element.color}40`
-                ]
-              }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            >
-              <span 
-                className="text-2xl filter drop-shadow-lg"
-                style={{ color: element.color }}
-              >
-                {element.icon}
-              </span>
-            </motion.div>
-            <motion.span
-              className="text-sm font-medium px-3 py-1 rounded-full backdrop-blur-sm border border-white/20"
-              style={{ 
-                color: element.color,
-                background: `${element.color}20`
-              }}
-              animate={{
-                color: [element.color, "#ffffff", element.color]
-              }}
-              transition={{ duration: 2, repeat: Infinity, delay: index * 0.3 }}
-            >
-              {element.label}
-            </motion.span>
-          </motion.div>
-        ))}
-
-        {/* Data Flow Lines connecting to chip */}
-        <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ width: '100vw', height: '100vh' }}>
-          {skillElements.map((element, index) => (
-            <motion.line
-              key={index}
-              x1="50%"
-              y1="50%"
-              x2={`calc(50% + ${element.position.x * 0.7}px)`}
-              y2={`calc(50% + ${element.position.y * 0.7}px)`}
-              stroke={element.color}
-              strokeWidth="2"
-              strokeOpacity="0.6"
-              strokeDasharray="5,5"
-              initial={{ pathLength: 0 }}
-              animate={{
-                pathLength: loadingProgress > index * 15 ? [0, 1] : 0,
-                strokeOpacity: [0.6, 1, 0.6]
-              }}
-              transition={{
-                pathLength: { duration: 1, delay: index * 0.2 },
-                strokeOpacity: { duration: 1.5, repeat: Infinity, ease: "easeInOut" }
-              }}
-            />
-          ))}
-          
-          {/* Glow Filter Definition */}
-          <defs>
-            <filter id="glow">
-              <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
-              <feMerge>
-                <feMergeNode in="coloredBlur"/>
-                <feMergeNode in="SourceGraphic"/>
-              </feMerge>
-            </filter>
-          </defs>
-        </svg>
+        </motion.div>s
 
         {/* Binary Rain Effect */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-30">
@@ -532,7 +169,7 @@ export default function LoadingScreen({ onLoadingComplete }: LoadingScreenProps)
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <motion.p
+          {currentPhase < 5 && <motion.p
             className="text-2xl font-medium mb-4 px-6 py-3 rounded-full backdrop-blur-lg border border-white/20 inline-block"
             key={currentPhase}
             initial={{ opacity: 0, y: 20, scale: 0.9 }}
@@ -555,7 +192,7 @@ export default function LoadingScreen({ onLoadingComplete }: LoadingScreenProps)
             }}
           >
             {phases[currentPhase]}
-          </motion.p>
+          </motion.p>}
 
           {/* Enhanced Loading Dots */}
           <div className="flex justify-center space-x-2 mb-6">
